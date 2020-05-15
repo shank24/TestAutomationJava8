@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TestMain_Ass_1 {
 
@@ -15,30 +16,36 @@ public class TestMain_Ass_1 {
 
         // Print the count of Names, starting with B
 
-        long countB = list.
-                stream()
-                .filter(s -> s.startsWith("B"))
-                .count();
+        long countB =       list
+                            .stream()
+                            .filter(s -> s.startsWith("B"))
+                            .count();
 
         System.out.println(countB);
 
         // Create a list of Name, which starts with C and contains 'S'
 
-        long countChasS = list.
-                stream().filter(s -> s.startsWith("C")).
-                filter(s -> s.toLowerCase().contains("s")).
-                count();
+        List<String> collect = list
+                                .stream()
+                                .filter(s -> s.startsWith("C"))
+                                .filter(s -> s.toLowerCase()
+                                .contains("s"))
+                                .collect(Collectors.toList());
 
-        System.out.println(countChasS);
+
+        System.out.println(collect.size());
 
 
         // Print the total number of char all the names start with 'M'
 
-        list.stream().filter(s-> s.startsWith("M")).
+        int sumOfChar = list
+                        .stream()
+                        .filter(s -> s.startsWith("M"))
+                        .map(name -> name.length())
+                        .mapToInt(a -> a)
+                        .sum();
 
 
-
-
-
+        System.out.println(sumOfChar);
     }
 }
