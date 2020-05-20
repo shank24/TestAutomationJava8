@@ -30,18 +30,29 @@ public class TestMain_Ass_1 {
                                 .filter(s -> s.startsWith("C"))
                                 .filter(s -> s.toLowerCase()
                                 .contains("s"))
+
                                 .collect(Collectors.toList());
 
 
         System.out.println(collect.size());
 
+        // Other way around
+                long countCS =      list
+                                    .stream()
+                                    .filter(s -> s.startsWith("C"))
+                                    .filter(s -> s.toLowerCase()
+                                    .contains("s"))
+                                    .count();
+
+                System.out.println(countCS);
 
         // Print the total number of char all the names start with 'M'
 
         int sumOfChar = list
                         .stream()
                         .filter(s -> s.startsWith("M"))
-                        .map(name -> name.length())
+                        .map(String::trim)
+                        .map(String::length)
                         .mapToInt(a -> a)
                         .sum();
 
